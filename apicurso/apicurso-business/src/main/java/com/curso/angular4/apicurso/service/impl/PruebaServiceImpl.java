@@ -5,35 +5,27 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.curso.angular4.apicurso.PruebaJson;
-import com.curso.angular4.apicurso.dao.UserDao;
-import com.curso.angular4.apicurso.entities.User;
+import com.curso.angular4.apicurso.FileUploadJson;
+import com.curso.angular4.apicurso.dao.ProductoDao;
+import com.curso.angular4.apicurso.entities.Producto;
 import com.curso.angular4.apicurso.service.PruebaService;
 
 @Service
 public class PruebaServiceImpl implements PruebaService{
 
 	@Autowired
-	private UserDao userDao;
+	private ProductoDao productoDao;
 	
 	@Override
-	public PruebaJson devolverMensaje(String nombre) {
+	public FileUploadJson devolverMensaje(String nombre) {
 		
-		User user =userDao.findById(User.class,1);
-		PruebaJson pruebaJson = new PruebaJson();
-		String mensaje = "Hola " + user.getName();
-		pruebaJson.setMensaje(mensaje);
-		return pruebaJson;
+//		Producto producto =productoDao.findById(Producto.class,1);
+//		PruebaJson pruebaJson = new PruebaJson();
+//		String mensaje = "Hola " + producto.getDescription();
+//		pruebaJson.setMensaje(mensaje);
+//		return pruebaJson;
+		return null;
 	}
 	
-	@Transactional
-	public PruebaJson borrarUsuario(Integer id) {
-		
-		User user =userDao.findById(User.class,1);
-		userDao.delete(user);
-		PruebaJson pruebaJson = new PruebaJson();
-		pruebaJson.setMensaje("Usuario borrado");
-		return pruebaJson;
-	}
 
 }

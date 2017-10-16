@@ -25,31 +25,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @PropertySource(value = { "classpath:db/db.properties" })
 @EnableTransactionManagement
 @ComponentScan("com.curso.angular4.apicurso")
-public class PersistendeConfig {
-
-//	@Bean
-//	@ConfigurationProperties("app.datasource")
-//	public DataSource dataSource() {
-//		return DataSourceBuilder.create().build();
-//	}
-
-//	@Bean
-//    public DataSource dataSource() {
-//        
-//		Properties properties = new Properties();
-//		properties.setProperty("spring.jpa.database-platform", "org.hibernate.dialect.MySQL5Dialect");
-//		properties.setProperty("spring.jpa.properties.hibernate.current_session_context_class", "org.springframework.orm.hibernate4.SpringSessionContext");
-//		
-//		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-//        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-//        dataSource.setUrl("jdbc:mysql://localhost:3306/videos_application");
-//        dataSource.setUsername("root");
-//        dataSource.setPassword("root");
-//        dataSource.setConnectionProperties(properties);
-//        return dataSource;
-//    }
-//	
-    
+public class PersistenceConfig {
     
 	@Value("${hibernate.dialect}")
 	private String PROPERTY_NAME_HIBERNATE_DIALECT;
@@ -73,9 +49,6 @@ public class PersistendeConfig {
 	
 	@Value("${spring.datasource.driverClassName}")
 	private String dataSourceDriver;
-
-    @Autowired
-    private Environment env;
 
      @Bean
      public DataSource dataSource() {
@@ -125,45 +98,4 @@ public class PersistendeConfig {
          properties.put(AvailableSettings.USE_CLASS_ENHANCER, "false");      
          return properties;       
      }
-
-     
-     
-//	@Bean
-//	public EntityManagerFactory entityManagerFactory() {
-//
-//		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-//		vendorAdapter.setGenerateDdl(true);
-//
-//		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-//		factory.setJpaVendorAdapter(vendorAdapter);
-//		factory.setPackagesToScan("com.curso.angular4.apicurso.entities");
-//		factory.setDataSource(dataSource());
-//		factory.afterPropertiesSet();
-//		factory.setJpaProperties(additionalProperties());
-//		return factory.getObject();
-//	}
-//	
-//
-//	@Bean
-//	public SessionFactory getSessionFactory() {
-//	    if (entityManagerFactory().unwrap(SessionFactory.class) == null) {
-//	        throw new NullPointerException("factory is not a hibernate factory");
-//	    }
-//	    return entityManagerFactory().unwrap(SessionFactory.class);
-//	}
-//
-//	Properties additionalProperties() {
-//		Properties properties = new Properties();
-//		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-//		properties.setProperty("hibernate.current_session_context_class", "org.hibernate.context.ThreadLocalSessionContext");
-//		return properties;
-//	}
-//	
-//	
-	
-	
-	
-	
-	
-	
 }
